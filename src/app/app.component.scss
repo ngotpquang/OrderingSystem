@@ -1,0 +1,68 @@
+@import "helper/all";
+.header {
+  background: $cl-header;
+  &__bg {
+    background: url("../assets/slice/header-top-line.png") repeat-x;
+    &--bottom {
+      height: 4px;
+    }
+    &--img {
+      background: url("../assets/slice/header-support.png") no-repeat;
+      height: 120px;
+    }
+  }
+  &__logo {
+    color: $cl-white;
+    &--text {
+      display: inline-flex;
+      align-items: center;
+      padding-left: 10px;
+    }
+  }
+  &__logo-group {
+    float: left;
+  }
+  &__btn-group {
+    float: right;
+    margin-top: 20px;
+    position: relative;
+  }
+  &__btn-login {
+    @include retangle(100px, 45px);
+    @extend %position-center;
+    left: -80%;
+    color: $cl-white;
+    outline: none;
+    border: none;
+    background: $cl-dark;
+    border-radius: 35%;
+
+  }
+  &__btn-waiter {
+    background:$cl-waiter;
+    @include circle(80px);
+    border: none;
+    color: $cl-white;
+    &:hover {
+      background:$cl-waiter;
+    }
+  }
+}
+
+.login {
+  &__header {
+    color: $cl-white;
+    background: $cl-header;
+  }
+  &__title {
+    text-align: center;
+    margin: 0;
+    flex: 12;
+  }
+  &__close {
+    outline: none;
+    flex: 1;
+    background: none;
+    border: 0;
+  }
+}

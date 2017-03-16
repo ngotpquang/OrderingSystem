@@ -1,0 +1,176 @@
+@import "../helper/all";
+.btn-menu {
+  @include circle(80px);
+  transform: scale(0.7);
+  display: inline-block;
+  background: $cl-btn-menu;
+  position: relative;
+  &__img {
+    @extend %position-center;
+    @include retangle(60px, 32px);
+    top: 45%;
+    background: url("../../assets/slice/btn-menu.png") no-repeat;
+  }
+  &__text {
+    @extend %position-center;
+    color: $cl-white;
+    font-size: 12px;
+  }
+  &:hover {
+    background: $cl-btn-menu-active;
+    box-shadow: -1px 4px 5px $cl-btn-menu-shadow;
+    .btn-menu {
+      &__img {
+        @include retangle(52px, 40px);
+        background: url("../../assets/slice/btn-menu-active.png") no-repeat;
+      }
+      &__text {
+        top: 10%;
+        left: 0%;
+        transform: rotate(-30deg);
+      }
+    }
+    &:before {
+      content: "";
+      @extend %position-vertical-center;
+      @include retangle(20px, 20px);
+      transform: rotate(45deg);
+      background: $cl-white;
+      border-left: 1px solid $cl-gray;
+      border-bottom: 1px solid $cl-gray;
+      right: -38px;
+      z-index: 3;
+    }
+  }
+}
+
+.food {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  &__name {
+    padding: 10px;
+  }
+  &__img {
+    padding-bottom: 10px;
+  }
+
+  &__board {
+    background: $cl-bg-price;
+    padding: 10px;
+    border-radius: 30%;
+    text-align: center;
+    // @include retangle(100px, 60px);
+    &--name {
+      color: $cl-white;
+    }
+    &--price {
+      color: yellow;
+    }
+  }
+}
+
+.search {
+  width: 100%;
+  &__group {
+    position: relative;
+  }
+  &__box {
+    display: block;
+    height: 40px;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  }
+  &__btn {
+    position: absolute;
+    border: none;
+    right: 2px;
+    top: 2px;
+    background: $cl-btn-search;
+    color: $cl-xxx;
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+}
+
+.wrapper {
+  margin-top: 20px;
+}
+.menu {
+  background: url("../../assets/slice/main-bg.png") no-repeat;
+  &__bg {
+    background: $cl-bg-menu;
+    padding: 20px;
+  }
+
+  &__board {
+    background: $cl-white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-right: -15px;
+  }
+}
+
+// .food {
+//   margin-top: 10px;
+//   padding-top: 20px;
+//   padding-bottom: 20px;
+// }
+
+
+.ordering {
+  background: $cl-bg-menu;
+  &__box {
+    background: $cl-white;
+    padding: 10px;
+    &--inner {
+      border: 1px solid $cl-gray;
+      // padding: 10px;
+      border-radius: 4px;
+    }
+  }
+  &__title {
+    font-size: 20px;
+    color: black;
+    text-align: center;
+  }
+  &__food {
+    padding: 5px;
+  }
+  &__total {
+    padding-right: 10px;
+    &--text {
+      float: right;
+    }
+  }
+  &__btn {
+    padding-right: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+    &--order {
+      margin-right: 5px;
+    }
+  }
+}
+
+.ordered__food {
+  &--order,
+  &--quantity {
+    flex: 1;
+    padding: 5px;
+  }
+  &--name,
+  &--price {
+    flex: 4;
+    padding: 5px;
+  }
+}

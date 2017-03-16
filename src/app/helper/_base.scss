@@ -1,0 +1,33 @@
+html {
+  font-family: 'Carter One', cursive;
+  font-size: $font-base;
+}
+
+body {
+  margin: 0 auto;
+}
+.flex-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.overfollow {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  cursor: point;
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,13 @@
+.btn--normal {
+  border-radius: 35%;
+  background: $cl-btn-cancel;
+  padding: 5px 10px;
+  color: $cl-dark;
+  display: inline-block;
+}
+
+.btn--suggest {
+  @extend .btn--normal;
+  background: $cl-btn-suggest-choose;
+  color: $cl-white;
+}

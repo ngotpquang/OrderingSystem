@@ -12,13 +12,15 @@ export class AppComponent {
   users: User[];
   errorMessage: string;
   constructor(private auth: Auth) {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("profile");
-    // var profile = localStorage.getItem("profile");
-    // auth.putUser(profile)
-    // .then(
-    //     user  => this.users.push(user),
-    //     error =>  this.errorMessage = <any>error);
+    // localStorage.removeItem('accessToken');
+    // localStorage.removeItem("id_token");
+    // localStorage.removeItem("profile");
+    if(auth.authenticated) {
+      var profile = localStorage.getItem("profile");
+      auth.putUser(profile)
+      .then(
+          user  => this.users.push(user),
+          error =>  this.errorMessage = <any>error);
+    }
   }
 }

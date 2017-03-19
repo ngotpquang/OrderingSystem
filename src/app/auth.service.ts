@@ -19,7 +19,7 @@ var profile;
 export class Auth {
   // Configure Auth0
   lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {});
-  private profileURL = '';
+  private profileURL = 'https://orderingsys.herokuapp.com/profile';
   // private http: Http;
   constructor(private http: Http) {
       // Add callback for lock `authenticated` event

@@ -3,6 +3,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 import { myConfig }        from './auth.config';
 import { Http, Response } from '@angular/http';
 import { User } from './models/user';
+import 'rxjs/add/operator/toPromise';
 
 import { Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +19,7 @@ var profile;
 export class Auth {
   // Configure Auth0
   lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {});
-  private profileURL = 'http://localhost:4200/profile';
+  private profileURL = '';
   // private http: Http;
   constructor(private http: Http) {
       // Add callback for lock `authenticated` event
@@ -65,12 +66,34 @@ export class Auth {
     localStorage.removeItem("profile");
   };
 
-  putUser(profile: string) {
+  putUser(profile: string): Promise<User> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let profileUser = JSON.stringify(profile);
 
     return this.http.post(this.profileURL, profileUser, options)
-                    .map(res => res.json());
+               .toPromise()
+               .then(this.extractData)
+               .catch(this.handleError);
   }
+
+  private extractData(res: Response) {
+    let body = res.json();
+    return body.data || { };
+  }
+
+  private handleError (error: Response | any) {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Promise.reject(errMsg);
+  }
+
 }

@@ -1,0 +1,28 @@
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/Rx';
+
+import { FoodAndBeverage } from '../models/FoodAndBeverage';
+
+@Injectable()
+export class MenuService {
+  private foodUrl = "/src/app/models/FoodAndBeverage-data.json";
+
+  constructor(private http: Http) {}
+
+  getFood(id:Number): Observable<FoodAndBeverage[]> {
+    return this.http.get(this.foodUrl)
+      .map(food => food.filter(afood => afood.foodAndBeverageTypeId == id ));
+
+    // var allFood = this.http.get(this.foodUrl)
+    //   .map(res => res.json());
+    // var allFoodId = new Array (FoodAndBeverage);
+    // allFood.forEach(function(afood) {
+    //   if (afood.foodAndBeverageTypeId == id) allFoodId.push(afood);
+    // });
+    // return allFoodId;
+  }
+}

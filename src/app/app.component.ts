@@ -9,8 +9,16 @@ import { User } from './models/user';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  users: User[];
+  errorMessage: string;
   constructor(private auth: Auth) {
-    var profile = localStorage.getItem("profile");
-    auth.putUser(profile);
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("profile");
+    // var profile = localStorage.getItem("profile");
+    // auth.putUser(profile)
+    // .then(
+    //     user  => this.users.push(user),
+    //     error =>  this.errorMessage = <any>error);
   }
 }

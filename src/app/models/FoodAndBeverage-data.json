@@ -1,12 +1,12 @@
 {
   "data": [
-    { "foodAndBeverageId": 1, "foodAndBeverageTypeId": 1, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
-    { "foodAndBeverageId": 2, "foodAndBeverageTypeId": 1, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
+    { "foodAndBeverageId": 1, "foodAndBeverageTypeId": 1, "price": "30.000 d", "name": "Pizzsa", "detail": "Pizza with sea food" },
+    { "foodAndBeverageId": 2, "foodAndBeverageTypeId": 1, "price": "30.000 d", "name": "Pizzas", "detail": "Pizza with sea food" },
     { "foodAndBeverageId": 3, "foodAndBeverageTypeId": 3, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
     { "foodAndBeverageId": 4, "foodAndBeverageTypeId": 2, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
     { "foodAndBeverageId": 5, "foodAndBeverageTypeId": 4, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
-    { "foodAndBeverageId": 6, "foodAndBeverageTypeId": 1, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
-    { "foodAndBeverageId": 7, "foodAndBeverageTypeId": 1, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
+    { "foodAndBeverageId": 6, "foodAndBeverageTypeId": 1, "price": "30.000 d", "name": "Pizsadasdza", "detail": "Pizza with sea food" },
+    { "foodAndBeverageId": 7, "foodAndBeverageTypeId": 1, "price": "30.000 d", "name": "Pidasdad  zza", "detail": "Pizza with sea food" },
     { "foodAndBeverageId": 8, "foodAndBeverageTypeId": 2, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
     { "foodAndBeverageId": 9, "foodAndBeverageTypeId": 3, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },
     { "foodAndBeverageId": 10, "foodAndBeverageTypeId": 4, "price": "30.000 d", "name": "Pizza", "detail": "Pizza with sea food" },

@@ -15,7 +15,8 @@ export class MenuService {
 
   getFood(id:Number): Observable<FoodAndBeverage[]> {
     return this.http.get(this.foodUrl)
-      .map(food => food.filter(afood => afood.foodAndBeverageTypeId == id ));
+        .map(response => response.json().data as FoodAndBeverage[])
+        .map(food => food.filter(afood => afood.foodAndBeverageTypeId == id ));
 
     // var allFood = this.http.get(this.foodUrl)
     //   .map(res => res.json());
@@ -25,4 +26,6 @@ export class MenuService {
     // });
     // return allFoodId;
   }
+
+
 }

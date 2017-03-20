@@ -2,6 +2,7 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { MenuComponent }      from './menu/menu.component';
+import { ProfileComponent }      from './profile/profile.component';
 import { AppComponent }  from './app.component';
 
 const routes: Routes = [
@@ -10,6 +11,10 @@ const routes: Routes = [
     component: MenuComponent,
     pathMatch: 'full'
   },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  }
 
 ];
 

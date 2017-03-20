@@ -35,7 +35,7 @@
     outline: none;
     border: none;
     background: $cl-dark;
-    border-radius: 35%;
+    border-radius: 3px;
 
   }
   &__btn-waiter {
@@ -43,8 +43,12 @@
     @include circle(80px);
     border: none;
     color: $cl-white;
+    font-size: 12px;
     &:hover {
       background:$cl-waiter;
+    }
+    &--icon {
+      font-size: 30px;
     }
   }
 }

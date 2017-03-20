@@ -16,16 +16,13 @@ export class MenuService {
   getFood(id:Number): Observable<FoodAndBeverage[]> {
     return this.http.get(this.foodUrl)
         .map(response => response.json().data as FoodAndBeverage[])
-        .map(food => food.filter(afood => afood.foodAndBeverageTypeId == id ));
-
-    // var allFood = this.http.get(this.foodUrl)
-    //   .map(res => res.json());
-    // var allFoodId = new Array (FoodAndBeverage);
-    // allFood.forEach(function(afood) {
-    //   if (afood.foodAndBeverageTypeId == id) allFoodId.push(afood);
-    // });
-    // return allFoodId;
+        .map(food => food.filter(afood => afood.foodAndBeverageTypeId === id ));
   }
 
+  getDetail(id:Number): Observable<FoodAndBeverage> {
+    return this.http.get(this.foodUrl)
+        .map(response => response.json().data as FoodAndBeverage[])
+        .map(food => food.filter(afood => afood.foodAndBeverageId === id ))[0];
+  }
 
 }

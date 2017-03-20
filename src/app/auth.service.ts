@@ -19,7 +19,7 @@ var profile;
 export class Auth {
   // Configure Auth0
   lock = new Auth0Lock(myConfig.clientID, myConfig.domain, {});
-  private profileURL = 'https://orderingsys.herokuapp.com/profile';
+  private profileURL = 'https://localhost:4200/profile';
   // private http: Http;
   constructor(private http: Http) {
       // Add callback for lock `authenticated` event
@@ -47,12 +47,11 @@ export class Auth {
     this.lock.show();
   };
 
-
   public authenticated() {
     let token = localStorage.getItem('id_token');
-    console.log("Token: " + token);
     let profile = localStorage.getItem('profile');
-    console.log(profile);
+    console.log("profile "+profile);
+    console.log("token "+profile);
 
     // Check if there's an unexpired JWT
     // It searches for an item in localStorage with key == 'id_token'
@@ -95,5 +94,6 @@ export class Auth {
     console.error(errMsg);
     return Promise.reject(errMsg);
   }
+
 
 }

@@ -10,6 +10,9 @@ import { AppRoutingModule }     from './app-routing.module';
 import { provideAuth, AuthHttp, AuthConfig }      from 'angular2-jwt';
 
 import { MenuService } from './menu/menu.services';
+import { ProfileComponent } from './profile/profile.component';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp( new AuthConfig({}), http, options);
@@ -19,12 +22,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   declarations: [
     AppComponent,
     MenuComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     {

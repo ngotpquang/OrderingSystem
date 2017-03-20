@@ -12,7 +12,10 @@
           <button class="header__btn-login" (click)="auth.login()" *ngIf="!auth.authenticated()">Log In</button>
           <button class="header__btn-login" (click)="auth.logout()" *ngIf="auth.authenticated()">Log Out</button>
           <!--<a href="#" id="logged-in" class="header__btn-login"> Login </a>-->
-          <input type="button" class="btn btn-default header__btn-waiter" value="Waiter">
+          <a href="#" class="btn btn-default header__btn-waiter" value="Waiter">
+            <p class="icon-phone header__btn-waiter--icon"></p>
+            Waiter
+          </a>
         </div>
       </div>
     </div>

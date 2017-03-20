@@ -1,22 +1,125 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from './menu.services';
 import { FoodAndBeverage } from '../models/FoodAndBeverage';
+import {ViewEncapsulation} from '@angular/core';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MenuComponent implements OnInit {
   food: FoodAndBeverage[];
+  afood: FoodAndBeverage;
   errorMessage: string;
+  quantity: number;
+  priceStr: string;
+  priceNumFirst : number;
+  foodSearch: FoodAndBeverage;
   constructor( private menuService: MenuService) { }
 
   ngOnInit() {
-    console.log("food ",this.food);
+    this.quantity = 1;
     this.menuService.getFood(1)
         .subscribe(food => this.food = food);
-    console.log("food ",this.food);
+    this.totalMoney();
   }
 
+  // get total price
+  totalMoney(): number {
+    var foodPrice = document.getElementsByClassName("ordered__food--price");
+    var totalPrice = document.getElementsByClassName("ordering__total--money")[0];
+    var total = 0;
+    for(var i = 0; i < foodPrice.length; i++) {
+      var price = foodPrice[i].innerHTML.split(".")[0];
+      total += parseInt(price);
+    }
+    if(total == 0) totalPrice.innerHTML = "0 d";
+    else totalPrice.innerHTML = total + ".000 d";
+    return total;
+  }
+
+  getFood(id: Number) {
+    this.menuService.getFood(id)
+        .subscribe(food => this.food = food);
+  }
+  getDetail(afood: FoodAndBeverage) {
+    this.afood = afood;
+    this.priceNumFirst = parseInt(this.afood.price.split(".")[0]);
+  }
+
+  quantityUp() {
+    this.quantity += 1;
+    var priceNum = this.priceNumFirst * this.quantity;
+    this.priceStr = priceNum + ".000 d";
+    this.afood.price = this.priceStr;
+  }
+  quantityDown() {
+    this.quantity -= 1;
+    if(this.quantity <= 0) this.quantity = 0;
+  }
+
+  //insert food choosed into ordering board
+  ordering(afood: FoodAndBeverage) {
+    console.log("$$$$ food "+afood);
+
+    var foodOrdering = document.getElementsByClassName("ordering__food")[0];
+    var orderedFoodList = document.getElementsByClassName("ordered__food");
+    var endFood;
+    var order = 1;
+    if(orderedFoodList.length > 0) {
+      endFood = orderedFoodList[orderedFoodList.length-1];
+      console.log("end food " + endFood);
+
+      var classNameLst = endFood.className.split(" ");
+      order = parseInt(classNameLst[classNameLst.length-1].split("food")[1])+1;
+    }
+    var addFood = document.createElement("div");
+    var newClassDiv = "food"+order;
+    var newClassClear = "clear"+order;
+    addFood.setAttribute("class", "ordering__food--text ordered__food flex-box "+newClassDiv);
+
+    addFood.innerHTML =`
+      <p class="ordered__food--name">`+afood.name+`</p>
+      <p class="ordered__food--quantity">`+this.quantity+`</p>
+      <p class="ordered__food--price">`+afood.price+`</p>
+      <button (click)="clearFood(`+newClassDiv+`)" class="ordered__food--clear ">x</button>
+    `;
+    foodOrdering.appendChild(addFood);
+    this.quantity = 1;
+    this.totalMoney();
+    var btnOrder = document.getElementsByClassName("ordering__btn--order")[0];
+    btnOrder.classList.add("btn--suggest");
+  }
+
+  clearFood(event) {
+    console.log("event "+ event);
+    var parent = document.getElementsByClassName("ordering__food")[0];
+    var foodClear = document.getElementsByClassName(event)[0];
+    parent.removeChild(foodClear);
+    var currentPrice = this.totalMoney();
+    this.totalMoney();
+  }
+
+  ordered() {
+     var orderedWrap = document.getElementsByClassName("ordering__food")[0];
+     var orderedFood = document.getElementById("ordered-food__wrap");
+     var orderingFoodLst = document.getElementsByClassName("ordered__food");
+     for (var i = 0; i < orderingFoodLst.length; i++) {
+      orderedFood.appendChild(orderingFoodLst[i]);
+      orderingFoodLst[i].classList.add("inner-odered");
+     }
+     var btnRemove = document.getElementsByClassName("ordered__food--clear");
+     for (var i = 0; i < btnRemove.length; i++) {
+       btnRemove[i].remove();
+     }
+     console.log("btn remove "+ btnRemove[1]);
+     var btnPaymen = document.getElementsByClassName("ordering__btn--payment")[0];
+     btnPaymen.classList.add("btn--suggest");
+     var btnOrder = document.getElementsByClassName("ordering__btn--order")[0];
+     btnOrder.classList.add("btn--normal");
+     btnOrder.classList.remove("btn--suggest");
+  }
 }

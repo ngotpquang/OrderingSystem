@@ -70,3 +70,11 @@
     border: 0;
   }
 }
+
+.btn-social {
+  &__fb,
+  &__gg {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+}

@@ -29,7 +29,6 @@
     "core-js": "^2.4.1",
     "css-loader": "^0.26.2",
     "express": "^4.15.0",
-    "ng2-search-filter": "^0.1.8",
     "rxjs": "^5.1.0",
     "sass-loader": "^6.0.3",
     "zone.js": "^0.7.6"

@@ -34,7 +34,6 @@ export class Auth {
         localStorage.setItem("accessToken", authResult.accessToken);
         localStorage.setItem("profile", JSON.stringify(profile));
 
-        document.getElementById('logged-in').textContent = profile.nickname;
         // Update DOM
       });
       // profile = localStorage.getItem("profile");
@@ -43,16 +42,12 @@ export class Auth {
 
   public login() {
     // Call the show method to display the widget.
-    console.log("login");
     this.lock.show();
   };
 
   public authenticated() {
     let token = localStorage.getItem('id_token');
     let profile = localStorage.getItem('profile');
-    console.log("profile "+profile);
-    console.log("token "+profile);
-
     // Check if there's an unexpired JWT
     // It searches for an item in localStorage with key == 'id_token'
     return tokenNotExpired();

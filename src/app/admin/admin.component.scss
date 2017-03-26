@@ -1,0 +1,60 @@
+@import "../helper/all";
+.menu {
+  padding-left: 0;
+  padding-right: 0;
+  background: #EF9B4C;
+  color: $cl-white;
+  border: none;
+  border-radius: 0;
+  &__item {
+    a {
+      color: $cl-white;
+    }
+    &--active {
+      background: #fb6a3d;
+      color: #ccc;
+    }
+  }
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $cl-white;
+}
+
+.navbar-collapse {
+  border: none;
+  border-radius: 0;
+}
+
+.sub-menu {
+  background: #f9ca9d;
+  border: none;
+  padding: 0 10px;
+  display: none;
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #fbdbd1;
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+}
+
+.dropdown-menu > li > a {
+  color: #a02e0a;
+}
+
+.menu__item {
+  &:hover {
+    .sub-menu {
+      display: block;
+    }
+  }
+}
+
+.admin-body {
+  background: #ccc;
+  &__wrap {
+    background: #fff;
+  }
+}

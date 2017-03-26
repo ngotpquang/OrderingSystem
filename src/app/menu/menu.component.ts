@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive, ElementRef, ComponentFactoryResolver,
+        ComponentRef, Input } from '@angular/core';
 import { MenuService } from './menu.services';
 import { FoodAndBeverage } from '../models/FoodAndBeverage';
-import {ViewEncapsulation} from '@angular/core';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ViewEncapsulation } from '@angular/core';
+
+declare var $:any;
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +12,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
   styleUrls: ['./menu.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class MenuComponent implements OnInit {
   food: FoodAndBeverage[];
   afood: FoodAndBeverage;
@@ -18,13 +21,17 @@ export class MenuComponent implements OnInit {
   priceStr: string;
   priceNumFirst : number;
   foodSearch: FoodAndBeverage;
-  constructor( private menuService: MenuService) { }
+  textSearch: string;
+  constructor( private menuService: MenuService,
+              private componentFactoryResolver: ComponentFactoryResolver,
+              private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.quantity = 1;
     this.menuService.getFood(1)
         .subscribe(food => this.food = food);
     this.totalMoney();
+    this.textSearch = "";
   }
 
   // get total price
@@ -61,6 +68,15 @@ export class MenuComponent implements OnInit {
     if(this.quantity <= 0) this.quantity = 0;
   }
 
+  clearFood(event) {
+    console.log("event "+ event);
+    var parent = document.getElementsByClassName("ordering__food")[0];
+    var foodClear = document.getElementsByClassName(event)[0];
+    parent.removeChild(foodClear);
+    var currentPrice = this.totalMoney();
+    this.totalMoney();
+  }
+
   //insert food choosed into ordering board
   ordering(afood: FoodAndBeverage) {
     console.log("$$$$ food "+afood);
@@ -79,28 +95,34 @@ export class MenuComponent implements OnInit {
     var addFood = document.createElement("div");
     var newClassDiv = "food"+order;
     var newClassClear = "clear"+order;
+
     addFood.setAttribute("class", "ordering__food--text ordered__food flex-box "+newClassDiv);
 
     addFood.innerHTML =`
       <p class="ordered__food--name">`+afood.name+`</p>
       <p class="ordered__food--quantity">`+this.quantity+`</p>
       <p class="ordered__food--price">`+afood.price+`</p>
-      <button (click)="clearFood(`+newClassDiv+`)" class="ordered__food--clear ">x</button>
+      <button class="ordered__food--clear `+newClassDiv+`">x</button>
     `;
     foodOrdering.appendChild(addFood);
+
+    var buttonClear = this.elementRef.nativeElement.getElementsByClassName(newClassDiv)[1];
+    console.log("btn "+ buttonClear.className);
+
+    buttonClear.addEventListener("click", function(){
+      // this.clearFood(newClassDiv);
+      var parent = document.getElementsByClassName("ordering__food")[0];
+      var foodClear = document.getElementsByClassName(newClassDiv)[0];
+      parent.removeChild(foodClear);
+      var currentPrice = this.totalMoney();
+      this.totalMoney();
+    }, this);
+
     this.quantity = 1;
     this.totalMoney();
     var btnOrder = document.getElementsByClassName("ordering__btn--order")[0];
     btnOrder.classList.add("btn--suggest");
-  }
-
-  clearFood(event) {
-    console.log("event "+ event);
-    var parent = document.getElementsByClassName("ordering__food")[0];
-    var foodClear = document.getElementsByClassName(event)[0];
-    parent.removeChild(foodClear);
-    var currentPrice = this.totalMoney();
-    this.totalMoney();
+    // $('#detailFood').modal('hide');
   }
 
   ordered() {
@@ -112,9 +134,14 @@ export class MenuComponent implements OnInit {
       orderingFoodLst[i].classList.add("inner-odered");
      }
      var btnRemove = document.getElementsByClassName("ordered__food--clear");
-     for (var i = 0; i < btnRemove.length; i++) {
-       btnRemove[i].remove();
+     var size = btnRemove.length;
+     while(size > 0) {
+       btnRemove[size-1].remove();
+       size--;
      }
+    //  for (var i = 0; i < btnRemove.length; i++) {
+    //    btnRemove[i].remove();
+    //  }
      console.log("btn remove "+ btnRemove[1]);
      var btnPaymen = document.getElementsByClassName("ordering__btn--payment")[0];
      btnPaymen.classList.add("btn--suggest");

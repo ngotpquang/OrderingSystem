@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MenuComponent }      from './menu/menu.component';
 import { AppComponent }  from './app.component';
+// import { UserComponent } from './user/user.component';
+// import { AdStatisticDrinkComponent } from './ad-statistic-drink/ad-statistic-drink.component';
 
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 import { CanDeactivateGuard } from './can-deactivate-guard.service'
@@ -14,9 +16,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   // {
-  //   path: 'admin-home',
-  //   component: AdminHomeComponent,
-  // }
+  //   path: 'user',
+  //   component: UserComponent,
+  // },
+  {
+    path: 'user',
+    loadChildren: "app/user/user.module#UserModule",
+  },
   {
     path: 'admin',
     loadChildren: 'app/admin/admin.module#AdminModule'

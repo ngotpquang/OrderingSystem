@@ -26,11 +26,11 @@ export class MenuDirective {
   handleSearch(event) {
 
     // reverst allfood
-    let that = this;
+    // let that = this;
     if(this.currentFood.length > 0) {
-      that.currentFood.forEach(function(value, index) {
-        this.allfood.push(value);
-      });
+      this.currentFood.forEach((value, index) => {
+        this.allFood.push(value);
+      }, this);
     }
 
     var BACKSPACE_KEY= 8;

@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit {
   priceNumFirst : number;
   foodSearch: FoodAndBeverage;
   textSearch: string;
+  thisPrice: String;
   constructor( private menuService: MenuService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private elementRef: ElementRef) { }
@@ -54,6 +55,7 @@ export class MenuComponent implements OnInit {
   }
   getDetail(afood: FoodAndBeverage) {
     this.afood = afood;
+    this.thisPrice = afood.price;
     this.priceNumFirst = parseInt(this.afood.price.split(".")[0]);
   }
 
@@ -66,6 +68,9 @@ export class MenuComponent implements OnInit {
   quantityDown() {
     this.quantity -= 1;
     if(this.quantity <= 0) this.quantity = 0;
+    var priceNum = this.priceNumFirst * this.quantity;
+    this.priceStr = priceNum + ".000 d";
+    this.afood.price = this.priceStr;
   }
 
   clearFood(event) {
@@ -79,8 +84,6 @@ export class MenuComponent implements OnInit {
 
   //insert food choosed into ordering board
   ordering(afood: FoodAndBeverage) {
-    console.log("$$$$ food "+afood);
-
     var foodOrdering = document.getElementsByClassName("ordering__food")[0];
     var orderedFoodList = document.getElementsByClassName("ordered__food");
     var endFood;
@@ -109,20 +112,16 @@ export class MenuComponent implements OnInit {
     var buttonClear = this.elementRef.nativeElement.getElementsByClassName(newClassDiv)[1];
     console.log("btn "+ buttonClear.className);
 
-    buttonClear.addEventListener("click", function(){
-      // this.clearFood(newClassDiv);
-      var parent = document.getElementsByClassName("ordering__food")[0];
-      var foodClear = document.getElementsByClassName(newClassDiv)[0];
-      parent.removeChild(foodClear);
-      var currentPrice = this.totalMoney();
-      this.totalMoney();
+    buttonClear.addEventListener("click", () => {
+      this.clearFood(newClassDiv);
     }, this);
 
     this.quantity = 1;
     this.totalMoney();
     var btnOrder = document.getElementsByClassName("ordering__btn--order")[0];
     btnOrder.classList.add("btn--suggest");
-    // $('#detailFood').modal('hide');
+    afood.price = this.thisPrice;
+    $('#detailFood').modal('hide');
   }
 
   ordered() {

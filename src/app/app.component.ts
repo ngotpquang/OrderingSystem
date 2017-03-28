@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { Auth }      from './auth.service';
 import { User } from './models/user';
 import { ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+declare var $:any;
 
 @Component({
   selector: 'app-root',
-  providers: [ Auth ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -18,19 +17,7 @@ export class AppComponent {
   inputEmail: string;
   inputPassword: string;
   constructor(
-    private auth: Auth,
     private router: Router) {
-    // localStorage.removeItem('accessToken');
-    // localStorage.removeItem("id_token");
-    // localStorage.removeItem("profile");
-    if(auth.authenticated) {
-      var profile = localStorage.getItem("profile");
-      auth.putUser(profile)
-      .then(
-          user  => this.users.push(user),
-          error =>  this.errorMessage = <any>error);
-    }
-
 
   }
   signIn() {
@@ -38,5 +25,6 @@ export class AppComponent {
       this.router.navigate(["/admin"]);
     console.log(this.inputEmail);
     console.log(this.inputPassword);
+    $('#login').modal('hide');
   }
 }

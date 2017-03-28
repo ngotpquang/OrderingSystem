@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 
 import { AdStatisticDrinkComponent }     from './../ad-statistic-drink/ad-statistic-drink.component';
+import { StatisticComponent } from './../statistic/statistic.component';
 import { CanDeactivateGuard }     from './../can-deactivate-guard.service';
 
 const adminRoutes: Routes = [
@@ -14,6 +15,11 @@ const adminRoutes: Routes = [
       {
         path: 'statistic-drink',
         component: AdStatisticDrinkComponent,
+        canDeactivate: [CanDeactivateGuard]
+      },
+      {
+        path: '',
+        component: StatisticComponent,
         canDeactivate: [CanDeactivateGuard]
       }
     ]

@@ -1,0 +1,11 @@
+.profile {
+  &-group {
+    display: table
+  }
+  &-qrcode,
+  &-info {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+  }
+}

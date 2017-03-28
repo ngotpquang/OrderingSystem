@@ -78,3 +78,21 @@
     margin-bottom: 10px;
   }
 }
+
+.footer {
+  background: #EA6D24;
+  text-align: center;
+  &-group {
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    .icon-middle {
+      margin: 0 150px;
+    }
+    .icon-outer,
+    .icon-middle {
+      font-size: 22px;
+      color: $cl-white;
+    }
+  }
+}

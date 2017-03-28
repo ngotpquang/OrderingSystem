@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { GoogleChart } from 'angular2-google-chart/directives/angular2-google-chart.directive';
 
@@ -10,7 +10,9 @@ import { GoogleChart } from 'angular2-google-chart/directives/angular2-google-ch
   encapsulation: ViewEncapsulation.None
 })
 
-export class AdStatisticDrinkComponent {
+export class AdStatisticDrinkComponent implements OnInit{
+  chartData: any;
+  chartOptions: any;
     public pie_ChartData = [
               ['Task', 'Hours per Day'],
               ['Work',     11],
@@ -23,4 +25,9 @@ export class AdStatisticDrinkComponent {
       width: 900,
       height: 500
     };
+
+    ngOnInit(){
+      console.log("ABCBJSJJAHD");
+    }
+
 }

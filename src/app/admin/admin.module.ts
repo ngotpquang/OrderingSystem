@@ -4,7 +4,10 @@ import { CommonModule }   from '@angular/common';
 import { AdminComponent } from './admin.component';
 
 import { AdminRoutingModule } from './admin-routing.module';
+import { StatisticComponent } from './../statistic/statistic.component';
 import { AdStatisticDrinkComponent } from './../ad-statistic-drink/ad-statistic-drink.component';
+import { GoogleChart } from 'angular2-google-chart/directives/angular2-google-chart.directive';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -13,7 +16,9 @@ import { AdStatisticDrinkComponent } from './../ad-statistic-drink/ad-statistic-
   ],
   declarations: [
     AdminComponent,
+    StatisticComponent,
     AdStatisticDrinkComponent,
+    GoogleChart
   ],
   providers: [
   ]

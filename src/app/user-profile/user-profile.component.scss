@@ -1,3 +1,5 @@
+@import "../helper/all";
+
 .profile {
   &-group {
     display: table
@@ -6,6 +8,47 @@
   &-info {
     display: table-cell;
     vertical-align: middle;
-    width: 50%;
+  }
+  &-qrcode {
+    padding: 10px;
+    background: $cl-white;
+    border: 1px solid #ccc;
+    width: 80%;
+  }
+  &-info {
+    width: 70%;
+  }
+
+  &-email,
+  &-name,
+  &-password {
+    margin-bottom: 20px;
+    padding-left: 30px;
+  }
+  &-icon {
+    @extend %position-vertical-center;
+    left: 10px;;
+    color: #ff733f;
+  }
+  &-line {
+    position: relative;
+    color: #ff733f;
+  }
+  &-edit {
+    @extend %position-vertical-center;
+    right: 0px;
+    border-radius: none;
+    border: none;
+    border-left: 1px solid #ccc;
+    padding: 8px;
+    background: #e2e2e2;
+    color: #ff733f;
+    opacity: 0.7;
+    &:hover,
+    &:active,
+    &:focus {
+      color: #c16100;
+      background: #dadada;
+    }
   }
 }

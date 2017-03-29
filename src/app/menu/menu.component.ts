@@ -148,4 +148,34 @@ export class MenuComponent implements OnInit {
      btnOrder.classList.add("btn--normal");
      btnOrder.classList.remove("btn--suggest");
   }
+
+
+   public itemImage:any =
+    {
+        "puk": 4,
+        "selectedPuk": 3,
+    };
+
+    public itemSvg:any =
+    {
+        "puk": 8,
+        "selectedPuk": 2,
+    };
+
+    public itemHover:number;
+
+
+    pukChangeSvg(newPukValue:number):void {
+        this.itemSvg.selectedPuk = newPukValue;
+    };
+
+
+    pukChangeImage(newPukValue:number):void {
+        this.itemImage.selectedPuk = newPukValue;
+    };
+
+
+    pukHover(pukValue:number) {
+        this.itemHover = pukValue;
+    }
 }

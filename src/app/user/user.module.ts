@@ -6,6 +6,7 @@ import { UserComponent } from './user.component';
 import { UserRoutingModule } from './user-routing.module';
 import { StatisticComponent }     from './../statistic/statistic.component';
 import { UserProfileComponent } from './../user-profile/user-profile.component';
+import { UserHistoryComponent } from './../user-history/user-history.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { UserProfileComponent } from './../user-profile/user-profile.component';
   declarations: [
     UserComponent,
     StatisticComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserHistoryComponent
   ],
   providers: [
   ]

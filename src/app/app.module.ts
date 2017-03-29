@@ -16,7 +16,7 @@ import { MenuDirective } from './menu/menu.directive';
 // import { UserComponent } from './user/user.component';
 
 import {Ng2PaginationModule} from 'ng2-pagination';
-import { UserHistoryComponent } from './user-history/user-history.component';
+import { RatingComponent } from './rating/rating.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -32,7 +32,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppComponent,
     MenuComponent,
     MenuDirective,
-    UserHistoryComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,

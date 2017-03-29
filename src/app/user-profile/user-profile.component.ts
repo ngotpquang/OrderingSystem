@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -8,10 +8,38 @@ import { ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class UserProfileComponent implements OnInit {
-
-  constructor() { }
+  email: string;
+  name: string;
+  password: string;
+  constructor( private elr: ElementRef) { }
 
   ngOnInit() {
+
   }
 
+  edit(type) {
+    var editField = this.elr.nativeElement.getElementsByTagName("input");
+    switch (type) {
+      case "email":
+        // var inputEmail = this.email;
+        editField[0].removeAttribute("readonly");
+
+        break;
+      case "name":
+        editField[1].removeAttribute("readonly");
+        break;
+      case "password":
+        editField[2].removeAttribute("readonly");
+        break;
+    }
+  }
+
+  saveProfile() {
+    console.log("$$$$");
+
+    console.log("email "+ this.email);
+    console.log("pass "+ this.password);
+    console.log("name "+ this.name);
+
+  }
 }

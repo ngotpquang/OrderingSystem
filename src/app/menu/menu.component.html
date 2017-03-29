@@ -101,7 +101,7 @@
                 </div>
                 <div class="ordering__btn">
                   <a (click)="ordered()" class="ordering__btn--order btn--suggest">Order</a>
-                  <a href="#" class="ordering__btn--payment btn--normal">Payment</a>
+                  <a  data-toggle="modal" data-target="#rating" class="ordering__btn--payment btn--normal">Payment</a>
                 </div>
               </div>
             </div>
@@ -158,3 +158,30 @@
   </div>
 </div>
 
+<!--modal rating-->
+<div class="modal fade" id="rating" tabindex="-1" role="dialog" aria-labelledby="ratingLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h5 class="modal-title" id="myModalLabel">Please rating for these food, you will get some promotions</h5>
+      </div>
+      <div class="modal-body">
+        <puk-rating
+                    [pukCount]="itemSvg.puk"
+                    [pukModel]="itemSvg.selectedPuk"
+                    [pukEmptyIcon]="'icon-home3'"
+                    [pukFullIcon]="'icon-pencil'"
+                    [pukIconColor]="'#000'"
+                    [pukIconSize]="'20px'"
+                    (pukClick)="pukChangeSvg($event)">
+            </puk-rating>
+            <p class="text">{{itemSvg.selectedPuk}} puk selected when click item</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

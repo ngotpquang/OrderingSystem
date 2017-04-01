@@ -11,7 +11,10 @@ export class UserProfileComponent implements OnInit {
   email: string;
   name: string;
   password: string;
-  constructor( private elr: ElementRef) { }
+  constructor( private elr: ElementRef) {
+    console.log("%%% here");
+
+  }
 
   ngOnInit() {
 

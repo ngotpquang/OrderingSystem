@@ -4,6 +4,11 @@ import { MenuService } from './menu.services';
 import { FoodAndBeverage } from '../models/FoodAndBeverage';
 import { ViewEncapsulation } from '@angular/core';
 
+import { Observable }        from 'rxjs/Observable';
+import { Http }       from '@angular/http';
+import 'rxjs/add/operator/map';
+import { Rating } from '../models/Rating';
+
 declare var $:any;
 
 @Component({
@@ -23,6 +28,9 @@ export class MenuComponent implements OnInit {
   foodSearch: FoodAndBeverage;
   textSearch: string;
   thisPrice: String;
+  ratingFood: Rating;
+  ratingService: Rating;
+
   constructor( private menuService: MenuService,
               private componentFactoryResolver: ComponentFactoryResolver,
               private elementRef: ElementRef) { }
@@ -149,33 +157,56 @@ export class MenuComponent implements OnInit {
      btnOrder.classList.remove("btn--suggest");
   }
 
+  public itemSvg:any =
+  {
+      "puk": 5,
+      "selectedPuk": 0,
+  };
 
-   public itemImage:any =
-    {
-        "puk": 4,
-        "selectedPuk": 3,
-    };
+  public itemSvgService:any =
+  {
+      "stars": 5,
+      "selectedStars": 0,
+  };
 
-    public itemSvg:any =
-    {
-        "puk": 8,
-        "selectedPuk": 2,
-    };
-
-    public itemHover:number;
-
-
-    pukChangeSvg(newPukValue:number):void {
-        this.itemSvg.selectedPuk = newPukValue;
-    };
+  public itemHover:number;
 
 
-    pukChangeImage(newPukValue:number):void {
-        this.itemImage.selectedPuk = newPukValue;
-    };
+  pukChangeSvg(newPukValue:number):void {
+      this.itemSvg.selectedPuk = newPukValue;
+  };
 
 
-    pukHover(pukValue:number) {
-        this.itemHover = pukValue;
-    }
+
+  pukHover(pukValue:number) {
+      this.itemHover = pukValue;
+  }
+
+
+  public itemServiceHover:number;
+
+  serviceChangeSvg(newserviceValue:number):void {
+      this.itemSvgService.selectedStars = newserviceValue;
+  };
+
+  serviceHover(serviceValue:number) {
+      this.itemServiceHover = serviceValue;
+  }
+
+  sendRating(): void {
+    console.log("food "+ this.itemSvg.selectedPuk);
+    console.log("service "+ this.itemSvgService.selectedStars);
+
+    this.menuService.getRate("food", this.itemSvg.selectedPuk)
+        .subscribe(ratingFood => {
+         this.ratingFood = ratingFood;
+         console.log("food rate ", ratingFood);
+         this.ratingFood.numOfPeople++;
+         this.menuService.updateRate("food", this.ratingFood);
+         $('#rating').modal('hide');},
+         error => {
+           console.log(error);
+         });
+
+  }
 }

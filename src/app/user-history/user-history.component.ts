@@ -10,6 +10,8 @@ export class UserHistoryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("alo");
+
   }
 
 }

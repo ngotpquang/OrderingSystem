@@ -13,10 +13,12 @@ import { provideAuth, AuthHttp, AuthConfig }      from 'angular2-jwt';
 
 import { MenuService } from './menu/menu.services';
 import { MenuDirective } from './menu/menu.directive';
-// import { UserComponent } from './user/user.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 import {Ng2PaginationModule} from 'ng2-pagination';
-import { RatingComponent } from './rating/rating.component';
+import { RatingFoodComponent } from './rating-food/rating-food.component';
+import { RatingServiceComponent } from './rating-service/rating-service.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -32,7 +34,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AppComponent,
     MenuComponent,
     MenuDirective,
-    RatingComponent,
+    RatingFoodComponent,
+    UserProfileComponent,
+    RatingServiceComponent,
   ],
   imports: [
     BrowserModule,

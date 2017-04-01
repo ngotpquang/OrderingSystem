@@ -1,0 +1,5 @@
+<ul class="puk-rating">
+    <li *ngFor="let item of serviceList"  (mouseenter)="onMouseEnter(item)" (mouseleave)="onMouseLeave()">
+        <i [ngClass]="getClass(item)" [ngStyle]="getStyle(item)" (click)="onClick(item)"></i>
+    </li>
+</ul>

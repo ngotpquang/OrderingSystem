@@ -3,11 +3,11 @@ import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'puk-rating',
-  templateUrl: './rating.component.html',
-  styleUrls: ['./rating.component.scss'],
+  templateUrl: './rating-food.component.html',
+  styleUrls: ['./rating-food.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class RatingComponent implements OnInit{
+export class RatingFoodComponent implements OnInit{
 
   private el:HTMLElement;
     private defaultCount:number = 0;
@@ -50,7 +50,6 @@ export class RatingComponent implements OnInit{
         this.pukModel = pukModel;
         this.pukClick.emit(pukModel);
         console.log("monuse click "+ pukModel);
-
     }
 
 
@@ -100,11 +99,10 @@ export class RatingComponent implements OnInit{
         }
         else {
             return {
-                "color": this.pukIconColor,
+                "color": "orange",
                 "font-size": this.pukIconSize
             }
         }
-
     }
 
 }

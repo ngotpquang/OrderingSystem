@@ -101,7 +101,7 @@
                 </div>
                 <div class="ordering__btn">
                   <a (click)="ordered()" class="ordering__btn--order btn--suggest">Order</a>
-                  <a  data-toggle="modal" data-target="#rating" class="ordering__btn--payment btn--normal">Payment</a>
+                  <a data-toggle="modal" data-target="#rating" class="ordering__btn--payment btn--normal">Payment</a>
                 </div>
               </div>
             </div>
@@ -167,20 +167,37 @@
         <h5 class="modal-title" id="myModalLabel">Please rating for these food, you will get some promotions</h5>
       </div>
       <div class="modal-body">
-        <puk-rating
-                    [pukCount]="itemSvg.puk"
-                    [pukModel]="itemSvg.selectedPuk"
-                    [pukEmptyIcon]="'icon-home3'"
-                    [pukFullIcon]="'icon-pencil'"
-                    [pukIconColor]="'#000'"
-                    [pukIconSize]="'20px'"
-                    (pukClick)="pukChangeSvg($event)">
-            </puk-rating>
-            <p class="text">{{itemSvg.selectedPuk}} puk selected when click item</p>
+        <div class="rating-food">
+          <p class="text">Rate for food </p>
+          <puk-rating
+                [pukCount]="itemSvg.puk"
+                [pukModel]="itemSvg.selectedPuk"
+                [pukIconBase] = "'icon-color'"
+                [pukEmptyIcon]="'icon-star-empty'"
+                [pukFullIcon]="'icon-star-full'"
+                [pukIconColor]="'#000'"
+                [pukIconSize]="'20px'"
+                (pukClick)="pukChangeSvg($event)">
+          </puk-rating>
+          <p class="text">{{itemSvg.selectedPuk}} stars selected </p>
+        </div>
+        <div class="rating-service">
+          <p class="text">Rate for service </p>
+          <service-rating
+                  [serviceCount]="itemSvgService.stars"
+                  [serviceModel]="itemSvgService.selectedStars"
+                  [serviceEmptyIcon]="'icon-star-empty'"
+                  [serviceFullIcon]="'icon-star-full'"
+                  [serviceIconColor]="'#000'"
+                  [serviceIconSize]="'20px'"
+                  (serviceClick)="serviceChangeSvg($event)">
+          </service-rating>
+          <p class="text">{{itemSvgService.selectedStars}} stars selected </p>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button (click)="sendRating()" type="button" class="btn btn-warning">Send</button>
       </div>
     </div>
   </div>

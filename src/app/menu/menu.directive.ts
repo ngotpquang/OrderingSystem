@@ -26,17 +26,33 @@ export class MenuDirective {
   handleSearch(event) {
 
     // reverst allfood
-    // let that = this;
-    if(this.currentFood.length > 0) {
+    var sizeCurrentFood = this.currentFood.length;
+    if(sizeCurrentFood > 0) {
+
+      //pop all food in allFood
+      var sizeAllFood = this.allFood.length;
+      while(sizeAllFood > 0) {
+        this.allFood.splice(0, 1);
+        sizeAllFood--;
+      }
       this.currentFood.forEach((value, index) => {
         this.allFood.push(value);
       }, this);
     }
 
+    else {
+      this.allFood.forEach(function(value, index) {
+        this.currentFood.push(value);
+      }, this);
+    }
+
     var BACKSPACE_KEY= 8;
+    var ALT_KEY = 18;
+    var CTRL_KEY = 17;
+    var SHIFT_KEY = 16;
     var keySearch = String.fromCharCode(event.keyCode);
     var currentText="";
-    if(this.text != undefined) {
+    if(this.text != undefined && event.keyCode != ALT_KEY && event.keyCode != CTRL_KEY && event.keyCode != SHIFT_KEY) {
       currentText = this.text + keySearch;
     }
     else currentText = keySearch;
@@ -49,17 +65,19 @@ export class MenuDirective {
 
     console.log("current search text "+currentText.toLocaleLowerCase());
 
-    // var currentFood = [];
-    this.allFood.forEach(function(value, index) {
-      this.currentFood.push(value);
-    }, this);
+    // push all food into current food
+    // if(!(this.currentFood.length > 0)) {
+    //   this.allFood.forEach(function(value, index) {
+    //     this.currentFood.push(value);
+    //   }, this);
+    // }
 
     var indexArr = [];
     this.currentFood.forEach(function(value, index) {
-      console.log("name food "+ value.name);
+      // console.log("name food "+ value.name);
       if(!value.name.includes(currentText.toLocaleLowerCase())) {
         indexArr.push(index);
-        console.log(index + "-" + value.name);
+        // console.log(index + "-" + value.name);
       }
     }, this);
     var size = indexArr.length;
@@ -73,5 +91,9 @@ export class MenuDirective {
         }
       }
     }
+
+    console.log("all food size "+ this.allFood.length);
+    console.log("current food size "+ this.currentFood.length);
+
   }
 }
